@@ -1,5 +1,9 @@
 package com.esig.helder.desafio.backend.repo;
 
-public interface taskRepo {
+import org.springframework.data.repository.CrudRepository;
+
+import com.esig.helder.desafio.backend.model.Task;
+
+public interface TaskRepo extends CrudRepository<Task, Long> {
   
 }
