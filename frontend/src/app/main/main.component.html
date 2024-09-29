@@ -1,1 +1,25 @@
-<p>main works!</p>
+<div class="d-flex justify-content-center my-4">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Estatus</th>
+        <th>Responsável</th>
+        <th>Selecionar</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let t of tasks; index as i">
+        <td>{{ t.id }}</td>
+        <td>{{ t.title }}</td>
+        <td>{{ t.status == "ON_GOING" ? "Pendente" : "Concluida" }}</td>
+        <td>{{ t.owner.name }}</td>
+        <td>
+          <button class="btn btn-secondary">Selecionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

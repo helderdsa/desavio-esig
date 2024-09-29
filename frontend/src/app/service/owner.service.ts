@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Owner } from '../models/Owner';
 
@@ -14,22 +13,22 @@ export class OwnerService {
   constructor(private http: HttpClient) {}
 
   getOwners(): Observable<Owner[]> {
-    return this.http.get<Owner[]>(this.url);
+    return this.http.get<Owner[]>(this.url + "/owner");
   }
 
-  getOwner(id: String | null): Observable<Owner> {
-    return this.http.get<Owner>(this.url + "/" + id);
+  getOwner(id: String): Observable<Owner> {
+    return this.http.get<Owner>(this.url + "/owner/" + id);
   }
 
   postOwner(o: Owner): Observable<Owner> {
-    return this.http.post<Owner>(this.url, o);
+    return this.http.post<Owner>(this.url + "/owner", o);
   }
 
   putOwner(o: Owner): Observable<Owner> {
-    return this.http.put<Owner>(this.url, o);
+    return this.http.put<Owner>(this.url + "/owner", o);
   }
 
-  deleteOwner(id: String | null): Observable<Owner> {
-    return this.http.delete<Owner>(this.url + "/" + id);
+  deleteOwner(id: String): Observable<Owner> {
+    return this.http.delete<Owner>(this.url + "/owner/" + id);
   }
 }

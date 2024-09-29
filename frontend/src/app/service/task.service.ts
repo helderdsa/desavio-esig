@@ -13,19 +13,19 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.url);
+    return this.http.get<Task[]>(this.url + "/task");
   }
 
   getTask(id: String | null): Observable<Task> {
-    return this.http.get<Task>(this.url + "/" + id);
+    return this.http.get<Task>(this.url + "/task" + id);
   }
 
   postTask(o: Task): Observable<Task> {
-    return this.http.post<Task>(this.url, o);
+    return this.http.post<Task>(this.url + "/task", o);
   }
 
   putTask(o: Task): Observable<Task> {
-    return this.http.put<Task>(this.url, o);
+    return this.http.put<Task>(this.url + "/task", o);
   }
 
   deleteTask(id: String | null): Observable<Task> {
