@@ -1,0 +1,22 @@
+# Usar uma imagem com Maven para compilar o projeto
+FROM maven:3.8.5-openjdk-17-slim AS build
+WORKDIR /app
+
+# Copiar o código-fonte do backend para dentro do container
+COPY . /app
+
+# Rodar o Maven para compilar e empacotar o projeto (gera o .jar)
+RUN mvn clean package
+
+# Usar uma imagem JDK para rodar a aplicação
+FROM openjdk:17-jdk-alpine
+WORKDIR /app
+
+# Copiar o .jar gerado no estágio anterior
+COPY --from=build /app/target/*.jar /app/backend.jar
+
+# Expor a porta que o Spring Boot vai usar
+EXPOSE 8080
+
+# Comando para rodar o backend
+ENTRYPOINT ["java", "-jar", "/app/backend.jar"]
