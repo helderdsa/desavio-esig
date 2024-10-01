@@ -1,41 +1,67 @@
-<form action="" class="text-center">
-  <input
-    type="text"
-    placeholder="Título"
-    name="titulo"
-    class="form-control my-4"
-    [(ngModel)]="task.title"
-  />
-  <textarea
-    name="descricao"
-    placeholder="Descrição"
-    class="form-control my-4"
-    [(ngModel)]="task.description"
-    rows="4"
-  ></textarea>
-  <div class="d-flex mb-4">
-    <select
-      name="responsavel"
-      class="form-control me-4"
-      [(ngModel)]="ownerId"
-    >
-      <option *ngFor="let owner of owners" [value]="owner.id">
-        {{ owner.name }}
-      </option>
-    </select>
-    
-    <select name="prioridade" class="form-control" [(ngModel)]="task.priority">
-      <option value="LOW">Baixa</option>
-      <option value="MID">Média</option>
-      <option value="HIGH">Alta</option>
-    </select>
+<h3>Cadastrar nova tarefa</h3>
+<form action="">
+  <div class="text-start">
+    <label for="titulo" class="form-label">Título:</label>
+    <input
+      type="text"
+      placeholder="Título"
+      name="titulo"
+      id="titulo"
+      class="form-control"
+      [(ngModel)]="task.title"
+    />
   </div>
-  <input
-    type="date"
-    class="form-control"
-    name="dataLimite"
-    [(ngModel)]="task.deadline"
-  />
+  <div class="my-4 text-start">
+    <label for="descricao" class="form-label">Descrição:</label>
+    <textarea
+      name="descricao"
+      id="descricao"
+      placeholder="Descrição"
+      class="form-control"
+      [(ngModel)]="task.description"
+      rows="4"
+    ></textarea>
+  </div>
+  <div class="row my-4 text-start">
+    <div class="col-4">
+      <label for="responsavel" class="form-label">Responsável:</label>
+      <select
+        id="responsavel"
+        name="responsavel"
+        class="form-control"
+        [(ngModel)]="ownerId"
+      >
+        <option *ngFor="let owner of owners" [value]="owner.id">
+          {{ owner.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-4">
+      <label for="prioridade" class="form-label">Prioridade:</label>
+      <select
+        id="prioridade"
+        name="prioridade"
+        class="form-control"
+        [(ngModel)]="task.priority"
+      >
+        <option value="LOW">Baixa</option>
+        <option value="MID">Média</option>
+        <option value="HIGH">Alta</option>
+      </select>
+    </div>
+
+    <div class="col-4">
+      <label for="dataLimite" class="form-label">Data Limite:</label>
+      <input
+        id="dataLimite"
+        type="date"
+        class="form-control"
+        name="dataLimite"
+        [(ngModel)]="task.deadline"
+      />
+    </div>
+  </div>
   <input
     type="button"
     value="Cadastrar"

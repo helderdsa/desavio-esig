@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 })
 export class CreateTaskComponent {
   task: Task = new Task();
-  owner: Owner = new Owner();
   owners: Owner[] = [];
   ownerId: String = '1';
 
@@ -30,9 +29,8 @@ export class CreateTaskComponent {
   createTask(): void {
     this.ownerService.getOwner(this.ownerId).subscribe({
       next: (data) => {
-        this.owner = data;
-        this.task.owner = this.owner;
-
+        this.task.owner = data;
+        this.task.status = "ON_GOING"
         this.taskService.postTask(this.task).subscribe(() => {
           alert('Tarefa Cadastrada com sucesso!');
           this.router.navigate(['/']);

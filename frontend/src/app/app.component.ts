@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,5 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  constructor(private router: Router) {}
   title = 'frontend';
+
+  goTo(route: String): void {
+    this.router.navigate([route])
+  }
 }

@@ -1,1 +1,62 @@
-<p>update-task works!</p>
+<form action="" class="text-center">
+  <input
+    type="text"
+    placeholder="Título"
+    name="titulo"
+    class="form-control my-4"
+    [(ngModel)]="task.title"
+  />
+  <textarea
+    name="descricao"
+    placeholder="Descrição"
+    class="form-control my-4"
+    [(ngModel)]="task.description"
+    rows="4"
+  ></textarea>
+  <div class="d-flex mb-4">
+    <select
+      name="responsavel"
+      class="form-control"
+      [(ngModel)]="ownerId"
+    >
+      <option *ngFor="let owner of owners" [value]="owner.id">
+        {{ owner.name }}
+      </option>
+    </select>
+    
+    <select name="prioridade" class="form-control mx-4" [(ngModel)]="task.priority">
+      <option value="LOW">Baixa</option>
+      <option value="MID">Média</option>
+      <option value="HIGH">Alta</option>
+    </select>
+
+    <select name="status" class="form-control" [(ngModel)]="task.status">
+      <option value="DONE">Concluido</option>
+      <option value="ON_GOING">Pendente</option>
+    </select>
+  </div>
+  <input
+    type="date"
+    class="form-control"
+    name="dataLimite"
+    [(ngModel)]="task.deadline"
+  />
+  <input
+    type="button"
+    value="Alterar"
+    class="btn btn-warning mx-2"
+    (click)="updateTask()"
+  />
+  <input
+    type="button"
+    value="Deletar"
+    class="btn btn-danger mx-2"
+    (click)="deleteTask()"
+  />
+  <input
+    type="button"
+    value="Cancelar"
+    class="btn btn-secondary mx-2"
+    (click)="cancel()"
+  />
+</form>

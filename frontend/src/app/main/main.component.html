@@ -1,25 +1,135 @@
-<div class="d-flex justify-content-center my-4">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Estatus</th>
-        <th>Responsável</th>
-        <th>Selecionar</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let t of tasks; index as i">
-        <td>{{ t.id }}</td>
-        <td>{{ t.title }}</td>
-        <td>{{ t.status == "ON_GOING" ? "Pendente" : "Concluida" }}</td>
-        <td>{{ t.owner.name }}</td>
-        <td>
-          <button class="btn btn-secondary">Selecionar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div>
+  <h2>Pesquisar Tarefas</h2>
+  <div class="d-flex justify-content-center">
+    <form action="" class="text-start w-75">
+      <div class="mb-4">
+        <label for="titulo" class="form-label">Título:</label>
+        <input
+          id="titulo"
+          type="text"
+          placeholder="Título"
+          name="titulo"
+          class="form-control"
+          [(ngModel)]="searchTask.title"
+        />
+      </div>
+      
+      <div class="mb-4">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <textarea
+          id="descricao"
+          name="descricao"
+          placeholder="Descrição"
+          class="form-control"
+          [(ngModel)]="searchTask.description"
+          rows="4"
+        ></textarea>
+      </div>
+    
+      <div class="row mb-4">
+        <div class="col-3">
+          <label for="responsavel" class="form-label">Responsável:</label>
+          <select
+            id="responsavel"
+            name="responsavel"
+            class="form-control"
+            [(ngModel)]="searchTask.owner"
+          >
+            <option *ngFor="let owner of owners" [value]="owner.id">
+              {{ owner.name }}
+            </option>
+          </select>
+        </div>
+    
+        <div class="col-3">
+          <label for="prioridade" class="form-label">Prioridade:</label>
+          <select
+            id="prioridade"
+            name="prioridade"
+            class="form-control"
+            [(ngModel)]="searchTask.priority"
+          >
+            <option value=""></option>
+            <option value="LOW">Baixa</option>
+            <option value="MID">Média</option>
+            <option value="HIGH">Alta</option>
+          </select>
+        </div>
+    
+        <div class="col-3">
+          <label for="status" class="form-label">Status:</label>
+          <select
+            id="status"
+            name="status"
+            class="form-control"
+            [(ngModel)]="searchTask.status"
+          >
+            <option value=""></option>
+            <option value="DONE">Concluído</option>
+            <option value="ON_GOING">Pendente</option>
+          </select>
+        </div>
+    
+        <div class="col-3">
+          <label for="dataLimite" class="form-label">Data Limite:</label>
+          <input
+            id="dataLimite"
+            type="date"
+            class="form-control"
+            name="dataLimite"
+            [(ngModel)]="searchTask.deadline"
+          />
+        </div>
+      </div>
+    
+      <div class="d-flex">
+        <input
+          type="button"
+          value="Filtrar Tarefas"
+          class="btn btn-primary"
+          (click)="searchTasks()"
+        />
+        <button class="btn btn-success mx-4" (click)="goTo('/cadastro')">
+          Cadastrar nova tarefa
+        </button>
+      </div>
+    </form>
+    
+  </div>
+  <h2>Lista de Tarefas</h2>
+  <div class="d-flex justify-content-center my-4">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Título</th>
+          <th>Estatus</th>
+          <th>Responsável</th>
+          <th>Data Limite</th>
+          <th>Prioridade</th>
+          <th>Selecionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let t of tasks; index as i"
+        >
+          <td>{{ i }}</td>
+          <td>{{ t.title }}</td>
+          <td>{{ t.status == "ON_GOING" ? "Pendente" : "Concluida" }}</td>
+          <td>{{ t.owner.name }}</td>
+          <td>{{ reorganizeDate(t.deadline) }}</td>
+          <td [ngClass]="colorSelect(t.priority)">{{ t.priority }}</td>
+          <td>
+            <button
+              class="btn btn-secondary"
+              (click)="goTo('/alterar/' + t.id)"
+            >
+              Selecionar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
