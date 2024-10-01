@@ -43,6 +43,6 @@ public class Task {
   private LocalDate deadline;
 
   @ManyToOne
-  @JoinColumn(name = "owner_id")
-  private Owner owner;
+  @JoinColumn(name = "user_id")
+  private User user;
 }

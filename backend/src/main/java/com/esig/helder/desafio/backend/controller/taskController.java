@@ -88,7 +88,7 @@ public class TaskController {
     existingTask.setDescription(t.getDescription());
     existingTask.setPriority(t.getPriority());
     existingTask.setDeadline(t.getDeadline());
-    existingTask.setOwner(t.getOwner());
+    existingTask.setUser(t.getUser());
 
     Task updatedTask = repo.save(existingTask);
     return new ResponseEntity<>(updatedTask, HttpStatus.OK);
