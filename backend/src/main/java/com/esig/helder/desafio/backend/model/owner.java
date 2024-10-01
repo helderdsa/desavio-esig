@@ -1,7 +1,5 @@
 package com.esig.helder.desafio.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,9 +19,4 @@ public class Owner {
   private Integer id;
 
   private String name;
-
-  // @JsonProperty("id")
-  // public void setId(int id) {
-  //   this.id = id;
-  // }
 }

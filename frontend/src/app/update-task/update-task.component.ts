@@ -50,13 +50,6 @@ export class UpdateTaskComponent {
     });
   }
 
-  deleteTask(): void {
-    this.taskService.deleteTask(`${this.task.id}`).subscribe(() => {
-      alert('Tarefa deletada com sucesso!');
-      this.router.navigate(['/']);
-    });
-  }
-
   cancel(): void {
     this.task = new Task();
     this.router.navigate(['/']);

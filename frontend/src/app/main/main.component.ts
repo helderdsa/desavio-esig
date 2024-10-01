@@ -38,8 +38,8 @@ export class MainComponent {
   }
 
   colorSelect(condition: string): string {
-    if (condition == "LOW") return "table-success"
-    if (condition == "MID") return "table-warning"
+    if (condition == "Baixa") return "table-success"
+    if (condition == "Média") return "table-warning"
     return "table-danger"
   }
 
@@ -57,6 +57,26 @@ export class MainComponent {
     this.taskService
       .searchTasks(title, status, description, priority, deadline, owner)
       .subscribe((data) => (this.tasks = data));
+  }
+
+  deleteTask(id: number): void {
+    this.taskService.deleteTask(id.toString()).subscribe(() => {
+      alert('Tarefa deletada com sucesso!');
+      this.taskService.getTasks().subscribe((data) => (this.tasks = data));
+    });
+  }
+
+  completeTask(id: number): void {
+    var currentTask = new Task()
+    this.taskService.getTask(id.toString()).subscribe((data) => {
+      currentTask = data
+      currentTask.status = "Feito"
+
+      this.taskService.putTask(currentTask).subscribe();
+      alert('Tarefa Concluída com sucesso!');
+      this.taskService.getTasks().subscribe((data) => (this.tasks = data));
+    });
+    
   }
 
   ngOnInit() {

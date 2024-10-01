@@ -1,7 +1,7 @@
 <div>
-  <h2>Pesquisar Tarefas</h2>
-  <div class="d-flex justify-content-center">
-    <form action="" class="text-start w-75">
+  <h3>Pesquisar Tarefas</h3>
+  <div class="row justify-content-center">
+    <form action="" class="text-start col-10">
       <div class="mb-4">
         <label for="titulo" class="form-label">Título:</label>
         <input
@@ -13,7 +13,7 @@
           [(ngModel)]="searchTask.title"
         />
       </div>
-      
+
       <div class="mb-4">
         <label for="descricao" class="form-label">Descrição:</label>
         <textarea
@@ -25,7 +25,7 @@
           rows="4"
         ></textarea>
       </div>
-    
+
       <div class="row mb-4">
         <div class="col-3">
           <label for="responsavel" class="form-label">Responsável:</label>
@@ -40,7 +40,7 @@
             </option>
           </select>
         </div>
-    
+
         <div class="col-3">
           <label for="prioridade" class="form-label">Prioridade:</label>
           <select
@@ -50,12 +50,12 @@
             [(ngModel)]="searchTask.priority"
           >
             <option value=""></option>
-            <option value="LOW">Baixa</option>
-            <option value="MID">Média</option>
-            <option value="HIGH">Alta</option>
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
           </select>
         </div>
-    
+
         <div class="col-3">
           <label for="status" class="form-label">Status:</label>
           <select
@@ -65,11 +65,11 @@
             [(ngModel)]="searchTask.status"
           >
             <option value=""></option>
-            <option value="DONE">Concluído</option>
-            <option value="ON_GOING">Pendente</option>
+            <option value="Feito">Concluído</option>
+            <option value="Pendente">Pendente</option>
           </select>
         </div>
-    
+
         <div class="col-3">
           <label for="dataLimite" class="form-label">Data Limite:</label>
           <input
@@ -81,7 +81,7 @@
           />
         </div>
       </div>
-    
+
       <div class="d-flex">
         <input
           type="button"
@@ -94,11 +94,10 @@
         </button>
       </div>
     </form>
-    
   </div>
   <h2>Lista de Tarefas</h2>
-  <div class="d-flex justify-content-center my-4">
-    <table class="table table-bordered">
+  <div class="row my-4">
+    <table class="table table-bordered col-12">
       <thead>
         <tr>
           <th>Número</th>
@@ -107,26 +106,36 @@
           <th>Responsável</th>
           <th>Data Limite</th>
           <th>Prioridade</th>
-          <th>Selecionar</th>
+          <th>Ação</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let t of tasks; index as i"
-        >
+        <tr *ngFor="let t of tasks; index as i">
           <td>{{ i }}</td>
           <td>{{ t.title }}</td>
-          <td>{{ t.status == "ON_GOING" ? "Pendente" : "Concluida" }}</td>
+          <td>{{ t.status }}</td>
           <td>{{ t.owner.name }}</td>
           <td>{{ reorganizeDate(t.deadline) }}</td>
           <td [ngClass]="colorSelect(t.priority)">{{ t.priority }}</td>
           <td>
-            <button
-              class="btn btn-secondary"
-              (click)="goTo('/alterar/' + t.id)"
-            >
-              Selecionar
-            </button>
+          <input
+            type="button"
+            value="Editar"
+            class="btn btn-warning"
+            (click)="goTo('/alterar/' + t.id)"
+          />
+          <input
+            type="button"
+            value="Concluir"
+            class="btn btn-success mx-2"
+            (click)="completeTask(t.id)"
+          />
+          <input
+            type="button"
+            value="Deletar"
+            class="btn btn-danger"
+            (click)="deleteTask(t.id)"
+          />
           </td>
         </tr>
       </tbody>

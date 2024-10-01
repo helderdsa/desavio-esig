@@ -30,7 +30,7 @@ export class CreateTaskComponent {
     this.ownerService.getOwner(this.ownerId).subscribe({
       next: (data) => {
         this.task.owner = data;
-        this.task.status = "ON_GOING"
+        this.task.status = "Pendente"
         this.taskService.postTask(this.task).subscribe(() => {
           alert('Tarefa Cadastrada com sucesso!');
           this.router.navigate(['/']);
