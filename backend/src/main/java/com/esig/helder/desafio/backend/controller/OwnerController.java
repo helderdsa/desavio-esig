@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esig.helder.desafio.backend.model.Owner;
 import com.esig.helder.desafio.backend.repo.OwnerRepo;
 
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/owner")
