@@ -4,6 +4,6 @@ dotenv.config();
 
 export const environment = {
   production: false,
-  apiUrl: process.env['API_URL'] || 'www.localhost:8080',
+  apiUrl: process.env['API_URL'] as string
 };
  
