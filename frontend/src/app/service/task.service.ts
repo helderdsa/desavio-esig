@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TaskService {
-  private url: string = 'http://localhost:8080';
+  private url: string = 'https://desavio-esig-back-production.up.railway.app';
 
   constructor(private http: HttpClient) {}
 
