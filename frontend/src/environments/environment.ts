@@ -1,9 +1,5 @@
-import dotenv from "dotenv"
-
-dotenv.config();
-
 export const environment = {
   production: false,
-  apiUrl: process.env['API_URL'] as string
+  apiUrl: "https://desavio-esig-back-production.up.railway.app" || "" as string
 };
  
